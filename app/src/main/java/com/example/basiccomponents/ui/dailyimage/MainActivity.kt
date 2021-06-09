@@ -11,6 +11,7 @@ import coil.load
 import com.example.basiccomponents.R
 import com.example.basiccomponents.network.repo.NasaRepository
 import com.example.basiccomponents.ui.models.NasaDailyImage
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
 import kotlinx.coroutines.*
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private var explainView: TextView? = null
     private var switchMaterial: SwitchMaterial? = null
     private var toolbar: Toolbar? = null
+    private var fab: FloatingActionButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +44,11 @@ class MainActivity : AppCompatActivity() {
         switchMaterial = findViewById(R.id.switchTheme)
         explainView = findViewById(R.id.explain_view)
         toolbar = findViewById(R.id.toolbar)
-        fetchDailyImage(Date())
+        fab = findViewById(R.id.floatingActionButton)
+        fab?.setOnClickListener {
+            fetchDailyImage(Date())
+            fab?.hide()
+        }
         switchMaterial?.setOnClickListener { changeTheme() }
     }
 
