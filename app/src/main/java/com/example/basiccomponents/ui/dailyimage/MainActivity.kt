@@ -6,10 +6,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
 import coil.load
 import com.example.basiccomponents.R
 import com.example.basiccomponents.network.repo.NasaRepository
 import com.example.basiccomponents.ui.models.NasaDailyImage
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.switchmaterial.SwitchMaterial
 import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject
@@ -30,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     private var dateView: TextView? = null
     private var explainView: TextView? = null
     private var switchMaterial: SwitchMaterial? = null
-    private var toolbar: androidx.appcompat.widget.Toolbar? = null
+    private var toolbar: Toolbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +57,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleError(t: Throwable) {
         Log.e(MainActivity::class.java.simpleName, "exception!", t)
+        Snackbar.make(findViewById(R.id.constraint), "an error occurred", Snackbar.LENGTH_SHORT)
+            .show()
         //TODO: handle request's errors here
     }
 
